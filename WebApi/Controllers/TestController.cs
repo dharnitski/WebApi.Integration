@@ -26,5 +26,13 @@ namespace WebApi.Controllers
 
             return "pong";
         }
+
+        [Route("secure")]
+        [HttpGet]
+        [Authorize]
+        public string Secure()
+        {
+            return "secret";
+        }
     }
 }

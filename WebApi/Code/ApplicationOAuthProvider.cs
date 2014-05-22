@@ -15,20 +15,12 @@ namespace WebApi.Code
     {
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            using (var userManager = new UserManager<TestIdentityUser>(new TestUserStore()))
+            using (var userManager = new TestUserManager(new TestUserStore()))
             {
                 TestIdentityUser user;
                 ClaimsIdentity oAuthIdentity;
-                try
-                {
-                    user = await userManager.FindAsync(context.UserName, context.Password);
-                    oAuthIdentity = await userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
-                }
-                catch (Exception ex)
-                {
-                    //Trace.Fail(ex.Message);
-                    throw;
-                }
+                user = await userManager.FindAsync(context.UserName, context.Password);
+                oAuthIdentity = await userManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
                
                 //ClaimsIdentity cookiesIdentity = await userManager.CreateIdentityAsync(user,
                 //    CookieAuthenticationDefaults.AuthenticationType);
