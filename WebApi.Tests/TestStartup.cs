@@ -8,6 +8,7 @@ using System.Web.Http.Dependencies;
 using Ninject;
 using Ninject.Web.WebApi;
 using Owin;
+using TripFiles.Mobile;
 using WebApi.App_Start;
 
 namespace WebApi.Tests
@@ -20,6 +21,9 @@ namespace WebApi.Tests
             app.UseWelcomePage("/Welcome"); // See Microsoft.Owin.Diagnostics
             
             var config = new HttpConfiguration();
+
+            var startup = new Startup();
+            startup.ConfigureAuth(app);
 
             config.DependencyResolver = GetDependencyResolver();
 
