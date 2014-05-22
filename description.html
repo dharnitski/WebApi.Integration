@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>ASP. NET Web API Tutorial 01: Getting Started</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>ASP. NET Web API Tutorial 01: Getting Started</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            ASP.NET Web API
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            Web API
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Web
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">5/31/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/ASP-NET-Web-API-Tutorial-8d2588b1">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<div><em></em>&nbsp;<a href="http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api">http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api</a></div>
+<h1><em>Your First ASP.NET Web API <span>(C#)</span></em></h1>
+<div>[Excerpts]</div>
+<div>&nbsp;</div>
+<div>HTTP is not just for serving up web pages. It is also a powerful platform for&nbsp;building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform&nbsp; that you can think of has an HTTP library, so HTTP services
+ can reach a broad range of clients, including browsers, mobile devices, and traditional desktop&nbsp;applications.</div>
+<div>ASP.NET Web API is a framework for building web APIs on top of the .NET Framework. In this tutorial, you will&nbsp;&nbsp;use ASP.NET Web API to create a web API that returns a list of products.</div>
+<div>&nbsp;</div>
+<h2>Adding a Controller</h2>
+<p>A <em>controller</em> is an object that handles HTTP requestst. &nbsp;The <strong>
+New Project</strong> wizard created two controllers for you when it created the&nbsp;project. To see them, expand the Controllers folder in
+<strong>Solution Explorer</strong>.</p>
+<ul>
+<li><code>HomeController</code> is a traditional ASP.NET MVC controller. It is responsible for serving HTML pages for the site, and is not directly related to Web API.
+</li><li><code>ValuesController</code> is an example WebAPI controller. </li></ul>
+<p style="margin-left:10px; margin-right:10px; padding:10px; background-color:#e7f4ff">
+<strong>Note</strong>&nbsp;&nbsp;If you have worked with ASP.NET MVC, then you are already familiar with controllers. They work similarly in Web API, but controllers in Web API derive from the
+<strong>ApiController</strong> class instead of <strong>Controller</strong> class. The first major difference you will notice is that actions on Web API controllers do not return views, they return data.</p>
+<p>Go ahead and delete <code>ValuesController</code>, by right-clicking the file in
+<strong>Solution Explorer</strong> and selecting <strong>Delete</strong>.</p>
+<p>Add a new controller, as follows:</p>
+<p>In <strong>Solution Explorer</strong>, right-click the the Controllers folder. Select
+<strong>Add</strong> and then select <strong>Controller</strong>.</p>
+<p><img src="description/webapi_getstarted09.png" alt=""></p>
+<p>In the <strong>Add Controller</strong> wizard, name the controller &quot;ProductsController&quot;. In the
+<strong>Template </strong>drop-down list, select <strong>Empty API Controller</strong>. Then click
+<strong>Add</strong>.</p>
+<p><img src="description/webapi_getstarted08.png" alt=""></p>
+<p>The <strong>Add Controller</strong> wizard will create a file named ProductsController.cs in the Controllers folder.</p>
+<p class="note">It is not necessary to put your contollers into a folder named Controllers. The folder name is not important; it is simply a convenient way to organize your source files.&nbsp;</p>
+<p>If this file is not open already, double-click the file to open it. Add the following implementation:</p>
+<div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">namespace HelloWebAPI.Controllers 
+{ 
+    using HelloWebAPI.Models; 
+    public class ProductsController : ApiController 
+    { 
+ 
+        Product[] products = new Product[]  
+        {  
+            new Product { Id = 1, Name = &quot;Soup&quot;, Category = &quot;Groceries&quot;, Price = 1.39M },  
+            new Product { Id = 2, Name = &quot;Yo-yo&quot;, Category = &quot;Toys&quot;, Price = 3.75M },  
+            new Product { Id = 3, Name = &quot;Hammer&quot;, Category = &quot;Hardware&quot;, Price = 16.99M }  
+        }; 
+ 
+        public IEnumerable&lt;Product&gt; GetAllProducts() 
+        { 
+            return products; 
+        } 
+ 
+        public Product GetProductById(int id) 
+        { 
+            var product = products.FirstOrDefault((p) =&gt; p.Id == id); 
+            if (product == null) 
+            { 
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound); 
+                throw new HttpResponseException(resp); 
+            } 
+            return product; 
+        } 
+ 
+        public IEnumerable&lt;Product&gt; GetProductsByCategory(string category) 
+        { 
+            return products.Where( 
+                (p) =&gt; string.Equals(p.Category, category,  
+                    StringComparison.OrdinalIgnoreCase)); 
+        } 
+    } 
+}</pre>
+<div class="preview">
+<pre class="csharp"><span class="cs__keyword">namespace</span>&nbsp;HelloWebAPI.Controllers&nbsp;&nbsp;
+{&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">using</span>&nbsp;HelloWebAPI.Models;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">class</span>&nbsp;ProductsController&nbsp;:&nbsp;ApiController&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product[]&nbsp;products&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;Product[]&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">new</span>&nbsp;Product&nbsp;{&nbsp;Id&nbsp;=&nbsp;<span class="cs__number">1</span>,&nbsp;Name&nbsp;=&nbsp;<span class="cs__string">&quot;Soup&quot;</span>,&nbsp;Category&nbsp;=&nbsp;<span class="cs__string">&quot;Groceries&quot;</span>,&nbsp;Price&nbsp;=&nbsp;<span class="cs__number">1</span>.39M&nbsp;},&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">new</span>&nbsp;Product&nbsp;{&nbsp;Id&nbsp;=&nbsp;<span class="cs__number">2</span>,&nbsp;Name&nbsp;=&nbsp;<span class="cs__string">&quot;Yo-yo&quot;</span>,&nbsp;Category&nbsp;=&nbsp;<span class="cs__string">&quot;Toys&quot;</span>,&nbsp;Price&nbsp;=&nbsp;<span class="cs__number">3</span>.75M&nbsp;},&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">new</span>&nbsp;Product&nbsp;{&nbsp;Id&nbsp;=&nbsp;<span class="cs__number">3</span>,&nbsp;Name&nbsp;=&nbsp;<span class="cs__string">&quot;Hammer&quot;</span>,&nbsp;Category&nbsp;=&nbsp;<span class="cs__string">&quot;Hardware&quot;</span>,&nbsp;Price&nbsp;=&nbsp;<span class="cs__number">16</span>.99M&nbsp;}&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;IEnumerable&lt;Product&gt;&nbsp;GetAllProducts()&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">return</span>&nbsp;products;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;Product&nbsp;GetProductById(<span class="cs__keyword">int</span>&nbsp;id)&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;product&nbsp;=&nbsp;products.FirstOrDefault((p)&nbsp;=&gt;&nbsp;p.Id&nbsp;==&nbsp;id);&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">if</span>&nbsp;(product&nbsp;==&nbsp;<span class="cs__keyword">null</span>)&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;resp&nbsp;=&nbsp;<span class="cs__keyword">new</span>&nbsp;HttpResponseMessage(HttpStatusCode.NotFound);&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">throw</span>&nbsp;<span class="cs__keyword">new</span>&nbsp;HttpResponseException(resp);&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">return</span>&nbsp;product;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;IEnumerable&lt;Product&gt;&nbsp;GetProductsByCategory(<span class="cs__keyword">string</span>&nbsp;category)&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">return</span>&nbsp;products.Where(&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(p)&nbsp;=&gt;&nbsp;<span class="cs__keyword">string</span>.Equals(p.Category,&nbsp;category,&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringComparison.OrdinalIgnoreCase));&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;
+}</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;</div>
+</div>
+<div>&nbsp;</div>
+
+</div>
+
+
+    </div>
+</body>
+</html>
