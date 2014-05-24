@@ -46,8 +46,8 @@ namespace WebApi.Tests
             var content = response.Content.ReadAsStringAsync().Result;
             
             //Assert
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.AreEqual(@"""pong""", content);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Test]
